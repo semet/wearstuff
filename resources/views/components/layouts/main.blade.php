@@ -76,10 +76,13 @@
 		<script src="{{ asset('assets') }}/js/tiny-slider.js "></script>
 		<!-- Icons -->
 		<script src="{{ asset('assets') }}/js/feather.min.js"></script>
+        {{-- axios --}}
+		<script src="{{ asset('assets') }}/js/axios/axios.min.js"></script>
 		<!-- Main Js -->
 		<script src="{{ asset('assets') }}/js/plugins.init.js"></script>
 		<!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
 		<script src="{{ asset('assets') }}/js/app.js"></script>
+        @stack('scripts')
 		<!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
 	</body>
 </html>

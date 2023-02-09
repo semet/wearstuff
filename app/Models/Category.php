@@ -11,7 +11,7 @@ class Category extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'thumbnail'];
 
     protected $hidden = [];
 

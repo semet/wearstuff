@@ -13,7 +13,16 @@
     <!-- Features End -->
 
     <!-- Start -->
-    <x-home.most-viewed/>
+    <section class="section">
+        {{-- Most Viewed --}}
+        <x-home.most-viewed/>
+        {{-- Top Sales --}}
+        <x-home.top-sales/>
+        {{-- CTA --}}
+        <x-home.call-to-action/>
+        {{-- Latest Products --}}
+        <x-home.latest-products/>
+    </section>
     <!--end section-->
     <!-- End -->
 </x-layouts.main>

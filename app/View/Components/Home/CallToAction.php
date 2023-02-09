@@ -2,10 +2,9 @@
 
 namespace App\View\Components\Home;
 
-use App\Models\Product;
 use Illuminate\View\Component;
 
-class MostViewed extends Component
+class CallToAction extends Component
 {
     /**
      * Create a new component instance.
@@ -24,15 +23,6 @@ class MostViewed extends Component
      */
     public function render()
     {
-        $products = Product::with('views')
-            ->get()
-            ->sortByDesc(function (Product $product) {
-                return $product->views->count();
-            })
-            ->take(8)
-            ->all();
-        return view('components.home.most-viewed', [
-            'products' => $products
-        ]);
+        return view('components.home.call-to-action');
     }
 }

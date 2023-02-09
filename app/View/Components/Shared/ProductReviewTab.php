@@ -1,20 +1,20 @@
 <?php
 
-namespace App\View\Components\Home;
+namespace App\View\Components\Shared;
 
-use App\Models\Category;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
-class Features extends Component
+class ProductReviewTab extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        public Collection $reviews
+    ) {
     }
 
     /**
@@ -24,10 +24,6 @@ class Features extends Component
      */
     public function render()
     {
-        $categories = Category::all();
-
-        return view('components.home.features', [
-            'categories' => $categories
-        ]);
+        return view('components.shared.product-review-tab');
     }
 }

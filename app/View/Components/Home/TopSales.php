@@ -5,7 +5,7 @@ namespace App\View\Components\Home;
 use App\Models\Product;
 use Illuminate\View\Component;
 
-class MostViewed extends Component
+class TopSales extends Component
 {
     /**
      * Create a new component instance.
@@ -24,14 +24,15 @@ class MostViewed extends Component
      */
     public function render()
     {
-        $products = Product::with('views')
+        $products = Product::with('solds')
             ->get()
             ->sortByDesc(function (Product $product) {
-                return $product->views->count();
+                return $product->solds->sum('quantity');
             })
             ->take(8)
             ->all();
-        return view('components.home.most-viewed', [
+
+        return view('components.home.top-sales', [
             'products' => $products
         ]);
     }

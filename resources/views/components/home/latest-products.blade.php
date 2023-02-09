@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container mt-100 mt-60">
     <div class="row">
         <div class="col-12">
-            <h5 class="mb-0">Produk Paling Sering Dilihat</h5>
+            <h5 class="mb-0">Recent Products</h5>
         </div>
         <!--end col-->
     </div>

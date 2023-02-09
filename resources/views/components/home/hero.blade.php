@@ -39,13 +39,12 @@
                             <div class="col-lg-7 col-md-7">
                                 <div class="title-heading mt-4">
                                     <h1 class="display-4 title-white fw-bold mb-3">
-                                        New Accessories <br />
-                                        Collections
+                                        Koleksi Songket <br />
+                                        Terbaru
                                     </h1>
                                     <p class="para-desc text-dark title-white">
-                                        Launch your campaign and benefit from our expertise on
-                                        designing and managing conversion centered bootstrap
-                                        v5 html page.
+                                        Berbagai macam motif dan desain Songket terbaru dibuat secara alami dan tradisional
+                                        dengan memperhatikan setiap helai benang yang menyusunnya.
                                     </p>
                                     <div class="mt-4">
                                         <a

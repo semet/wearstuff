@@ -23,14 +23,17 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Batik Tradisional',
                 'slug' => 'batik-tradisional',
+                'thumbnail' => fake()->imageUrl(600, 300, true)
             ],
             [
                 'name' => 'Kebaya Sasak',
                 'slug' => 'kebaya-sasak',
+                'thumbnail' => fake()->imageUrl(600, 300, true)
             ],
             [
                 'name' => 'Songket Sasak',
                 'slug' => 'songket-sasak',
+                'thumbnail' => fake()->imageUrl(600, 300, true)
             ]
         ])->each(function (Category $category) {
             $products = [];
@@ -39,6 +42,7 @@ class CategorySeeder extends Seeder
                     'category_id' => $category->id,
                     'sku' => Str::of(Str::random(10))->upper(),
                     'name' => fake()->word() . ' ' . fake()->word(),
+                    'price' => rand(100000, 500000),
                     'overview' => fake()->paragraph(),
                     'description' => fake()->paragraph(4),
                     'additional_info' => fake()->paragraph(),

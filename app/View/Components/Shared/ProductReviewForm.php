@@ -1,11 +1,11 @@
 <?php
 
-namespace App\View\Components\Home;
+namespace App\View\Components\Shared;
 
-use App\Models\Category;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
 
-class Features extends Component
+class ProductReviewForm extends Component
 {
     /**
      * Create a new component instance.
@@ -24,10 +24,7 @@ class Features extends Component
      */
     public function render()
     {
-        $categories = Category::all();
-
-        return view('components.home.features', [
-            'categories' => $categories
-        ]);
+        $id = Route::current()->parameter('id');
+        return view('components.shared.product-review-form');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,15 +18,23 @@ class Product extends Model
         'category_id',
         'sku',
         'name',
+        'price',
         'overview',
         'description',
         'additional_info',
+        'weight',
         'size',
+        'gender',
         'quantity',
         'is_ready'
     ];
 
     protected $hidden = [];
+
+    public function isNew()
+    {
+        return $this->created_at->diffInDays(Carbon::today()) <= 7;
+    }
 
     public function category(): BelongsTo
     {
@@ -35,6 +44,17 @@ class Product extends Model
     public function discount(): HasOne
     {
         return $this->hasOne(Discount::class);
+    }
+
+    public function discountAmount(): int
+    {
+        //because we save the amount in percent
+        return (int)$this->discount->amount / 100 * (int)$this->price;
+    }
+
+    public function finalPrice()
+    {
+        return $this->discount ? $this->price - $this->discountAmount() : $this->price;
     }
 
     public function images(): HasMany
@@ -55,5 +75,10 @@ class Product extends Model
     public function ratings(): HasMany
     {
         return $this->hasMany(ProductRating::class);
+    }
+
+    public function views(): HasMany
+    {
+        return $this->hasMany(ProductView::class);
     }
 }

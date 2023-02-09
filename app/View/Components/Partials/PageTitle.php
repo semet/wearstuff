@@ -1,20 +1,19 @@
 <?php
 
-namespace App\View\Components\Home;
+namespace App\View\Components\Partials;
 
-use App\Models\Category;
 use Illuminate\View\Component;
 
-class Features extends Component
+class PageTitle extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        public string $title
+    ) {
     }
 
     /**
@@ -24,10 +23,6 @@ class Features extends Component
      */
     public function render()
     {
-        $categories = Category::all();
-
-        return view('components.home.features', [
-            'categories' => $categories
-        ]);
+        return view('components.partials.page-title');
     }
 }

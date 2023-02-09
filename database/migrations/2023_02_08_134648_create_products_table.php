@@ -23,6 +23,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('sku')->unique();
             $table->string('name');
+            $table->integer('price');
             $table->longText('overview'); //Short overview of a product
             $table->longText('description');
             $table->longText('additional_info')->nullable();

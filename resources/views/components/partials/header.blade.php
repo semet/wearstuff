@@ -1,7 +1,7 @@
 <header id="topnav" class="defaultscroll sticky">
     <div class="container">
         <!-- Logo container-->
-        <a class="logo" href="index.html">
+        <a class="logo" href="{{ route('home') }}">
             <img
                 src="{{ asset('assets') }}/images/logo-dark.png"
                 height="24"
@@ -56,7 +56,7 @@
             <!-- Navigation Menu-->
             <ul class="navigation-menu">
                 <li>
-                    <a href="index-shop.html" class="sub-menu-item">Home</a>
+                    <a href="{{ route('home') }}" class="sub-menu-item">Home</a>
                 </li>
                 <li class="has-submenu parent-menu-item">
                     <a href="javascript:void(0)">Shop</a><span class="menu-arrow"></span>
