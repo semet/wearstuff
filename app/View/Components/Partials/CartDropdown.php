@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Partials;
 
+use App\Services\CartService;
 use Illuminate\View\Component;
 
 class CartDropdown extends Component
@@ -23,6 +24,9 @@ class CartDropdown extends Component
      */
     public function render()
     {
-        return view('components.partials.cart-dropdown');
+        $cart = new CartService();
+        return view('components.partials.cart-dropdown', [
+            'cart' => $cart
+        ]);
     }
 }
