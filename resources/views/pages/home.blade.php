@@ -14,10 +14,10 @@
 
     <!-- Start -->
     <section class="section">
-        {{-- Most Viewed --}}
-        <x-home.most-viewed/>
         {{-- Top Sales --}}
         <x-home.top-sales/>
+        {{-- Most Viewed --}}
+        <x-home.most-viewed/>
         {{-- CTA --}}
         <x-home.call-to-action/>
         {{-- Latest Products --}}
