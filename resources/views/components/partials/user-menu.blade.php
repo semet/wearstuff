@@ -25,10 +25,9 @@
                 Download</a
             >
             <div class="dropdown-divider my-3 border-top"></div>
-            <a class="dropdown-item text-dark" href="#"
-                ><i class="uil uil-sign-out-alt align-middle me-1"></i>
-                Logout</a
-            >
+            <a class="dropdown-item text-dark" href="{{ route('logout') }}"><i class="uil uil-sign-out-alt align-middle me-1"></i>
+                Logout
+            </a>
         </div>
     </div>
 </li>
