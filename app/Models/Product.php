@@ -45,16 +45,35 @@ class Product extends Model
     {
         return $this->hasOne(Discount::class);
     }
-
+    /**
+     * calculate amount of discount
+     *
+     * @return integer
+     */
     public function discountAmount(): int
     {
         //because we save the amount in percent
         return (int)$this->discount->amount / 100 * (int)$this->price;
     }
-
-    public function finalPrice()
+    /**
+     * the final price after being subtracted by the discountAmount
+     *
+     * @return integer
+     */
+    public function finalPrice(): int
     {
         return $this->discount ? $this->price - $this->discountAmount() : $this->price;
+    }
+    /**
+     * this is for use in Cart
+     * multiply the final price and the product quantity in cart
+     *
+     * @param integer $quantity
+     * @return integer
+     */
+    public function priceWithQuantity(int $quantity): int
+    {
+        return $this->finalPrice() * $quantity;
     }
 
     public function images(): HasMany
@@ -80,5 +99,10 @@ class Product extends Model
     public function views(): HasMany
     {
         return $this->hasMany(ProductView::class);
+    }
+
+    public function carts(): HasMany
+    {
+        return $this->hasMany(Cart::class);
     }
 }
