@@ -74,11 +74,58 @@ class CartService
 
     public function getTax()
     {
-        return 10 / 100 * $this->subTotal();
+        return ceil(10 / 100 * $this->subTotal());
     }
 
     public function grandTotal()
     {
         return $this->subTotal() + $this->getTax();
+    }
+
+    public function itemsWithTax()
+    {
+        $items = $this->items();
+
+        $all = $items->map(function (Cart $item) {
+            return [
+                'sku' => $item->product->sku,
+                'name' => $item->product->name,
+                'price' => $item->product->finalPrice(),
+                'quantity' => $item->quantity,
+                'subtotal' => $item->product->priceWithQuantity($item->quantity),
+            ];
+        })->push([
+            'sku' => 'TAX',
+            'name' => 'PPN 10%',
+            'price' => $this->getTax(),
+            'quantity' => 1,
+            'subtotal' => $this->getTax(),
+        ]);
+
+        return $all;
+    }
+
+    public function getWeight()
+    {
+        $items = $this->items();
+        return $items->map(fn ($item) => $item->product->weight * $item->quantity)->sum();
+    }
+
+    // public function itemsWithDeliveryAndTax(array $data)
+    // {
+    //     $items = $this->itemsWithTax()->push([
+    //         'service' => $data['service'],
+    //         'name' => $data['description'],
+    //         'price' => $data['cost_value'],
+    //         'quantity' => 1,
+    //         'subtotal' => $data['cost_value'],
+    //     ]);
+
+    //     return $items;
+    // }
+
+    public function totalPiceWithDelivery($deliveryCost)
+    {
+        return $this->grandTotal() + $deliveryCost;
     }
 }
