@@ -19,9 +19,12 @@
 		<!-- Icons -->
 		<link href="{{ asset('assets') }}/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
 		<link
-			rel="stylesheet"
-			href="https://unicons.iconscout.com/release/v3.0.6/css/line.css"
+        rel="stylesheet"
+        href="https://unicons.iconscout.com/release/v3.0.6/css/line.css"
 		/>
+        {{-- Toastr --}}
+		<link href="{{ asset('assets') }}/js/toastr/build/toastr.min.css" rel="stylesheet" type="text/css" />
+
 		<!-- Main Css -->
 		<link href="{{ asset('assets') }}/css/style.css" rel="stylesheet" type="text/css" id="theme-opt" />
 		<link href="{{ asset('assets') }}/css/colors/default.css" rel="stylesheet" id="color-opt" />
@@ -59,6 +62,14 @@
 		<x-partials.wishlist-popup/>
 		<!-- Wishlist Popup End -->
 
+        <!-- Login Popup Start -->
+		<x-partials.login-popup/>
+		<!-- Login Popup End -->
+
+        <!-- Add address popup Start -->
+		<x-shared.create-address/>
+		<!-- Add address popup End -->
+
 		<!-- Offcanvas Start -->
 		<x-partials.search-bar/>
 		<!-- Offcanvas End -->
@@ -71,11 +82,15 @@
 
 
 		<!-- javascript -->
+		<script src="{{ asset('assets') }}/js/jquery/jquery.min.js"></script>
 		<script src="{{ asset('assets') }}/js/bootstrap.bundle.min.js"></script>
 		<!-- SLIDER -->
 		<script src="{{ asset('assets') }}/js/tiny-slider.js "></script>
 		<!-- Icons -->
 		<script src="{{ asset('assets') }}/js/feather.min.js"></script>
+        {{-- Toastr --}}
+		<script src="{{ asset('assets') }}/js/toastr/build/toastr.min.js"></script>
+
         {{-- axios --}}
 		<script src="{{ asset('assets') }}/js/axios/axios.min.js"></script>
 		<!-- Main Js -->
