@@ -1,4 +1,4 @@
-<li class="list-inline-item mb-0">
+<li class="list-inline-item mb-0 mx-2">
     <a
         href="#"
         class="btn btn-icon btn-pills btn-primary"
