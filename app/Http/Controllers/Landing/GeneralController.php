@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Landing;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use Illuminate\Http\Request;
+use Irfa\RajaOngkir\Facades\Ongkir;
 
 class GeneralController extends Controller
 {
@@ -16,4 +17,15 @@ class GeneralController extends Controller
             'cities' => $cities
         ]);
     }
+
+    // public function getCouriers(Request $request)
+    // {
+    //     $get = Ongkir::find(['origin' => config('app.city_origin'), 'destination' => $request->cityId, 'weight' => 1000, 'courier' => 'jne'])
+    //         ->costDetails()
+    //         ->get();
+
+    //     return response()->json([
+    //         'couriers' => $get
+    //     ]);
+    // }
 }
