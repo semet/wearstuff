@@ -23,11 +23,16 @@ class Address extends Model
 
     public function city(): BelongsTo
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, 'city_id');
     }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function deliveryService()
+    {
+        return $this->hasMany(DeliveryService::class);
     }
 }
