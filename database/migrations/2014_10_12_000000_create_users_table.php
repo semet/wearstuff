@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('gender', array_column(GenderEnum::cases(), 'value'));
+            $table->string('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
