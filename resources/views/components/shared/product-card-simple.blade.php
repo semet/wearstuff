@@ -23,14 +23,30 @@
         <a href="shop-product-detail.html" class="overlay-work">
             <img src="{{ asset('assets') }}/images/shop/product/s-1.jpg" class="img-fluid" alt="{{ $product->name }}"/>
         </a>
+        @auth
         <ul class="list-unstyled shop-icons">
             <li>
-                <a href="shop-cart.html" class="btn btn-icon btn-pills btn-success"><i data-feather="shopping-cart" class="icons"></i></a>
+                <a href="{{ route('cart.add', $product) }}" class="btn btn-icon btn-pills btn-success"><i data-feather="shopping-cart" class="icons"></i></a>
             </li>
             <li class="mt-2">
                 <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-danger"><i data-feather="heart" class="icons"></i></a>
             </li>
         </ul>
+        @endauth
+        @guest
+        <ul class="list-unstyled shop-icons">
+            <li>
+                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-success" data-bs-toggle="modal" data-bs-target="#loginPopup">
+                    <i data-feather="shopping-cart" class="icons"></i>
+                </a>
+            </li>
+            <li class="mt-2">
+                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-danger" data-bs-toggle="modal" data-bs-target="#loginPopup">
+                    <i data-feather="heart" class="icons"></i>
+                </a>
+            </li>
+        </ul>
+        @endguest
     </div>
     <div class="card-body content pt-4 p-2 text-center">
         <a href="{{ route('product.show', $product->id) }}" class="text-dark product-name h6">{{ $product->name }}</a>
