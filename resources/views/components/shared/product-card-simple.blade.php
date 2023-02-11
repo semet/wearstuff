@@ -23,14 +23,32 @@
         <a href="shop-product-detail.html" class="overlay-work">
             <img src="{{ asset('assets') }}/images/shop/product/s-1.jpg" class="img-fluid" alt="{{ $product->name }}"/>
         </a>
+        @if($product->quantity == 0)
+        <div class="overlay-work">
+            <div class="py-2 bg-soft-dark rounded-bottom out-stock">
+                <h6 class="mb-0 text-center text-danger">Habis terjual</h6>
+            </div>
+        </div>
+        @endif
+        @if($product->quantity <= 5 && $product->quantity > 0)
+        <div class="overlay-work">
+            <div class="py-2 bg-soft-info rounded-bottom out-stock">
+                <h6 class="mb-0 text-center">Stok terbatas ({{ $product->quantity }} pcs)</h6>
+            </div>
+        </div>
+        @endif
         @auth
         <ul class="list-unstyled shop-icons">
+            @if($product->quantity > 0)
             <li>
-                <a href="{{ route('cart.add', $product) }}" class="btn btn-icon btn-pills btn-success"><i data-feather="shopping-cart" class="icons"></i></a>
+                <a href="{{ route('cart.add', $product) }}" class="btn btn-icon btn-pills btn-success">
+                    <i data-feather="shopping-cart" class="icons"></i>
+                </a>
             </li>
             <li class="mt-2">
                 <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-danger"><i data-feather="heart" class="icons"></i></a>
             </li>
+            @endif
         </ul>
         @endauth
         @guest
