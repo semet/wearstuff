@@ -22,8 +22,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'phone',
         'email',
+        'email_verified_at',
         'password',
+        'gender',
+        'photo',
     ];
 
     /**
@@ -58,5 +62,20 @@ class User extends Authenticatable
     public function productReviews(): HasMany
     {
         return $this->hasMany(ProductReview::class);
+    }
+
+    public function productsInCart(): HasMany
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function wishedProducts(): HasMany
+    {
+        return $this->hasMany(Wish::class);
+    }
+
+    public function shippingAddress(): HasMany
+    {
+        return $this->hasMany(Address::class);
     }
 }
