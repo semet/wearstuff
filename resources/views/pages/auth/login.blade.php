@@ -14,14 +14,24 @@
                     <div class="card login-page bg-white shadow rounded border-0">
                         <div class="card-body">
                             <h4 class="card-title text-center">Login</h4>
-                            <form class="login-form mt-4">
+                            @if(session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
+                            </div>
+                            @endif
+                            <form class="login-form mt-4" method="POST" action="{{ route('login.post') }}">
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label class="form-label">Your Email <span class="text-danger">*</span></label>
                                             <div class="form-icon position-relative">
                                                 <i data-feather="user" class="fea icon-sm icons"></i>
-                                                <input type="email" class="form-control ps-5" placeholder="Email" name="email" required="">
+                                                <input type="email" class="form-control ps-5 @error('email') is-invalid @enderror" placeholder="Email" name="email">
+                                                @error('email')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div><!--end col-->
@@ -31,7 +41,10 @@
                                             <label class="form-label">Password <span class="text-danger">*</span></label>
                                             <div class="form-icon position-relative">
                                                 <i data-feather="key" class="fea icon-sm icons"></i>
-                                                <input type="password" class="form-control ps-5" placeholder="Password" required="">
+                                                <input type="password" class="form-control ps-5 @error('password') is-invalid @enderror" placeholder="Password" name="password">
+                                                @error('password')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div><!--end col-->
