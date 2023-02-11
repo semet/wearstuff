@@ -17,6 +17,10 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'province_origin' => 22,
+
+    'city_origin' => 239,
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -211,7 +215,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        'Ongkir' => Irfa\RajaOngkir\Facades\Ongkir::class,
+        'RajaOngkir' => Irfa\RajaOngkir\Facades\Ongkir::class,
     ])->toArray(),
 
 ];
