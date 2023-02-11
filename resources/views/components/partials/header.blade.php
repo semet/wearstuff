@@ -47,7 +47,22 @@
             {{-- Wishlist--}}
             <x-partials.wishlist-dropdown/>
             {{-- User Menu --}}
+            @guest
+            <li class="list-inline-item mb-0">
+                <button
+                    type="button"
+                    class="btn btn-icon btn-pills btn-primary"
+                    data-bs-toggle="modal"
+                   data-bs-target="#loginPopup"
+                >
+                    <i data-feather="log-in" class="icons"></i>
+                </button>
+            </li>
+            @endguest
+
+            @auth
             <x-partials.user-menu/>
+            @endauth
 
         </ul>
         <!--end login button-->
