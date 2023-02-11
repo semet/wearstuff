@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Courier;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class CourierSeeder extends Seeder
 {
@@ -14,6 +16,13 @@ class CourierSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $data = [
+            ['id' => Str::uuid(), 'code' => 'pos', 'title' => 'POS Indonesia (POS)'],
+            ['id' => Str::uuid(), 'code' => 'jne', 'title' => 'Jalur Nugraha Ekakurir (JNE)'],
+            ['id' => Str::uuid(), 'code' => 'tiki', 'title' => 'Citra Van Titipan Kilat (TIKI)'],
+            ['id' => Str::uuid(), 'code' => 'esl', 'title' => 'Eka Sari Lorena (ESL)'],
+        ];
+
+        Courier::insert($data);
     }
 }
