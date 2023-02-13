@@ -83,7 +83,7 @@ class Product extends Model
 
     public function reviews(): HasMany
     {
-        return $this->hasMany(ProductReview::class);
+        return $this->hasMany(ProductReview::class)->latest();
     }
 
     public function solds(): HasMany
