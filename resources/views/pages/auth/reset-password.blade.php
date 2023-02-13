@@ -11,29 +11,39 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6">
+                    @if(session('success'))
+                    <div class="alert alert-success" role="alert"> {{ session('success') }} </div>
+                    @endif
                     <div class="card shadow rounded border-0">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Recover Account</h4>
+                            <h4 class="card-title text-center">Amankan Akun Anda</h4>
 
-                            <form class="login-form mt-4">
+                            <form class="login-form mt-4" method="POST" action="{{ route('password.send.request') }}">
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <p class="text-muted">Please enter your email address. You will receive a link to create a new password via email.</p>
+                                        <p class="text-muted">Silakan masukkan email anda.</p>
                                         <div class="mb-3">
-                                            <label class="form-label">Email address <span class="text-danger">*</span></label>
+                                            <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
                                             <div class="form-icon position-relative">
                                                 <i data-feather="mail" class="fea icon-sm icons"></i>
-                                                <input type="email" class="form-control ps-5" placeholder="Enter Your Email Address" name="email" required="">
+                                                <input type="email" class="form-control ps-5 @error('email') is-invalid @enderror" placeholder="email@example.com" name="email" id="email" required="">
                                             </div>
+                                            @error('email')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div><!--end col-->
                                     <div class="col-lg-12">
                                         <div class="d-grid">
-                                            <button class="btn btn-primary">Send</button>
+                                            <button class="btn btn-primary" type="submit">Kirim</button>
                                         </div>
                                     </div><!--end col-->
                                     <div class="mx-auto">
-                                        <p class="mb-0 mt-3"><small class="text-dark me-2">Remember your password ?</small> <a href="auth-login.html" class="text-dark fw-bold">Sign in</a></p>
+                                        <p class="mb-0 mt-3">
+                                            <small class="text-dark me-2">Sudah ingat lagi passwordnya ?</small>
+                                            <a href="{{ route('login.show') }}" class="text-dark fw-bold">Login</a>
+                                        </p>
                                     </div>
                                 </div>
                             </form>
