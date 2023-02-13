@@ -56,8 +56,6 @@
 </div>
 
 @push('scripts')
-<script src="{{ asset('assets') }}/js/parsleyjs/parsley.min.js"></script>
-<script src="{{ asset('assets') }}/js/parsleyjs/form-validation.init.js"></script>
 <script>
     $(function() {
         //

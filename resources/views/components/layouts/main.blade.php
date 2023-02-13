@@ -82,6 +82,7 @@
 
 
 		<!-- javascript -->
+        @routes
 		<script src="{{ asset('assets') }}/js/jquery/jquery.min.js"></script>
 		<script src="{{ asset('assets') }}/js/bootstrap.bundle.min.js"></script>
 		<!-- SLIDER -->
@@ -90,7 +91,9 @@
 		<script src="{{ asset('assets') }}/js/feather.min.js"></script>
         {{-- Toastr --}}
 		<script src="{{ asset('assets') }}/js/toastr/build/toastr.min.js"></script>
-
+        {{-- Parsley --}}
+        <script src="{{ asset('assets') }}/js/parsleyjs/parsley.min.js"></script>
+        <script src="{{ asset('assets') }}/js/parsleyjs/form-validation.init.js"></script>
         {{-- axios --}}
 		<script src="{{ asset('assets') }}/js/axios/axios.min.js"></script>
 		<!-- Main Js -->
