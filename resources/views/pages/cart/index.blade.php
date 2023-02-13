@@ -23,7 +23,11 @@
                             <tbody>
                                 @foreach ($cart->items() as $item)
                                 <tr class="shop-list">
-                                    <td class="h6 text-center"><a href="javascript:void(0)" class="text-danger"><i class="uil uil-times"></i></a></td>
+                                    <td class="h6 text-center">
+                                        <a href="{{ route('cart.remove', $item) }}" class="text-danger">
+                                            <i class="uil uil-times"></i>
+                                        </a>
+                                    </td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img src="{{ asset('assets') }}/images/shop/product/s1.jpg" class="img-fluid avatar avatar-small rounded shadow" style="height:auto;" alt="">
