@@ -17,9 +17,4 @@ class ProductController extends Controller
             'product' => $product
         ]);
     }
-
-    public function preview($id)
-    {
-        $product = Product::find($id);
-    }
 }
