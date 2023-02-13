@@ -25,6 +25,8 @@ class ProductReviewForm extends Component
     public function render()
     {
         $id = Route::current()->parameter('id');
-        return view('components.shared.product-review-form');
+        return view('components.shared.product-review-form', [
+            'productId' => $id
+        ]);
     }
 }
