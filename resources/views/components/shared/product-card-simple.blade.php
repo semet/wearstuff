@@ -41,7 +41,7 @@
         <ul class="list-unstyled shop-icons">
             @if($product->quantity > 0)
             <li>
-                <a href="{{ route('cart.add', $product) }}" class="btn btn-icon btn-pills btn-success">
+                <a href="{{ route('cart.add', $product->id) }}" class="btn btn-icon btn-pills btn-success">
                     <i data-feather="shopping-cart" class="icons"></i>
                 </a>
             </li>
