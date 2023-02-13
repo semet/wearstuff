@@ -3,29 +3,35 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Services\CartService;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function __construct(
+        public CartService $cart
+    ) {
+    }
 
     public function index()
     {
-        $cart = new CartService();
         return view('pages.cart.index', [
-            'cart' => $cart
+            'cart' => $this->cart
         ]);
     }
 
-    public function addToCart(Product $product)
+    public function addToCart(string $productId, ?int $quantity = null)
     {
-        (new CartService())->add($product);
+        $this->cart->add($productId, $quantity);
         return back();
     }
 
-    public function removeItem(Product $product)
+    public function removeItem(Cart $cart)
     {
-        //
+        $this->cart->remove($cart);
+
+        return back();
     }
 }
