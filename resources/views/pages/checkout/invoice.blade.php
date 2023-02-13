@@ -103,11 +103,11 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-5 ms-auto">
                                         <ul class="list-unstyled h6 fw-normal mt-4 mb-0 ms-md-5 ms-lg-4">
-                                            <li class="text-muted d-flex justify-content-between">Ongkir :<span>Rp. {{ number_format($order->deliveryService->cost) }}</span></li>
-                                            <li class="text-muted d-flex justify-content-between">
+                                            <li class="text-muted d-flex justify-content-between mt-4">Ongkir :<span>Rp. {{ number_format($order->deliveryService->cost) }}</span></li>
+                                            <li class="text-muted d-flex justify-content-between mt-4">
                                                 Taxes :<span>Rp. {{ number_format($order->getTax()) }}</span>
                                             </li>
-                                            <li class="d-flex justify-content-between">Total :<span>Rp. {{ $order->total_price }}</span></li>
+                                            <li class="d-flex justify-content-between mt-4">Total :<span>Rp. {{ $order->total_price }}</span></li>
                                         </ul>
                                     </div><!--end col-->
                                 </div><!--end row-->
