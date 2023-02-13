@@ -15,19 +15,19 @@ class CartService
      * @param integer|null $quantity
      * @return void
      */
-    public function add(Product $product, ?int $quantity = null)
+    public function add(string $productId, ?int $quantity = null)
     {
         $cart = Cart::query();
 
         if ($cart->where('user_id', auth()->id())
-            ->where('product_id', $product->id)
+            ->where('product_id', $productId)
             ->first()
         ) {
             $cart->increment('quantity', $quantity ?? 1);
         } else {
             $cart->create([
                 'user_id' => auth()->id(),
-                'product_id' => $product->id,
+                'product_id' => $productId,
                 'quantity' => $quantity ?? 1
             ]);
         }
@@ -38,10 +38,8 @@ class CartService
      * @param string $id
      * @return boolean
      */
-    public function remove(string $id)
+    public function remove(Cart $cart)
     {
-        $cart = Cart::find($id);
-
         if (!$cart) {
             return false;
         } else {
