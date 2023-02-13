@@ -18,7 +18,7 @@ class Address extends Model
 
     public function province(): BelongsTo
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Province::class, 'province_id');
     }
 
     public function city(): BelongsTo
