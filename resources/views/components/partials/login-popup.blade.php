@@ -43,7 +43,7 @@
                                             </div>
                                         </div>
                                         <p class="forgot-pass mb-0">
-                                            <a href="{{ route('reset.password') }}" class="text-dark fw-bold">Forgot password ?</a>
+                                            <a href="{{ route('password.reset') }}" class="text-dark fw-bold">Forgot password ?</a>
                                         </p>
                                     </div>
                                 </div><!--end col-->
@@ -74,7 +74,7 @@
                                 <div class="col-12 text-center">
                                     <p class="mb-0 mt-3">
                                         <small class="text-dark me-2">Don't have an account ?</small>
-                                        <a href="{{ route('register') }}" class="text-dark fw-bold">Sign Up</a>
+                                        <a href="{{ route('register.show') }}" class="text-dark fw-bold">Sign Up</a>
                                     </p>
                                 </div><!--end col-->
                             </div><!--end row-->
