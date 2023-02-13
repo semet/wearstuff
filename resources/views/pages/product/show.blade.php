@@ -35,13 +35,15 @@
                         </ul> --}}
 
                         <h5 class="mt-4 py-2">Overview :</h5>
-                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero exercitationem, unde molestiae sint quae inventore atque minima natus fugiat nihil quisquam voluptates ea omnis. Modi laborum soluta tempore unde accusantium.</p>
+                        <p class="text-muted">
+                            {{ $product->overview }}
+                        </p>
 
-                        <ul class="list-unstyled text-muted">
+                        {{-- <ul class="list-unstyled text-muted">
                             <li class="mb-1"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span> Digital Marketing Solutions for Tomorrow</li>
                             <li class="mb-1"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span> Our Talented &amp; Experienced Marketing Agency</li>
                             <li class="mb-1"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span> Create your own skin to match your brand</li>
-                        </ul>
+                        </ul> --}}
 
                         <div class="row mt-4 pt-2">
                             <div class="col-lg-6 col-12">
@@ -62,7 +64,7 @@
                                     <h6 class="mb-0">Quantity:</h6>
                                     <div class="qty-icons ms-3">
                                         <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="btn btn-icon btn-soft-primary minus">-</button>
-                                        <input min="0" name="quantity" value="0" type="number" class="btn btn-icon btn-soft-primary qty-btn quantity">
+                                        <input min="1" name="quantity" id="productQuantity" value="1" type="number" class="btn btn-icon btn-soft-primary qty-btn quantity">
                                         <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn btn-icon btn-soft-primary plus">+</button>
                                     </div>
                                 </div>
@@ -70,7 +72,7 @@
                         </div><!--end row-->
 
                         <div class="mt-4 pt-2">
-                            <a href="shop-cart.html" class="btn btn-primary shadow shadow-lg">
+                            <a href="javascript:void(0)" class="btn btn-primary shadow shadow-lg" onclick="addToCart('{{ $product->id }}')">
                                 <i data-feather="shopping-cart" class="icons"></i>
                                 Add to Cart
                             </a>
@@ -89,4 +91,7 @@
         <x-shared.related-products :category="$product->category->id"/>
 
     </section>
+    @push('scripts')
+        <script src={{ asset('assets/js/common/cart.js') }}></script>
+    @endpush
 </x-layouts.main>
