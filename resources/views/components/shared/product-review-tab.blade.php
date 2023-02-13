@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <p class="text-muted p-3 bg-light rounded">
+                    <p class="p-3 bg-light rounded shadow shadow-sm">
                         {{ $review->body }}
                     </p>
                 </div>
