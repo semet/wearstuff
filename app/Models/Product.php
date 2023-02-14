@@ -76,6 +76,7 @@ class Product extends Model
         return $this->finalPrice() * $quantity;
     }
 
+
     public function images(): HasMany
     {
         return $this->hasMany(ProductImage::class);
@@ -109,5 +110,10 @@ class Product extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function voucherItems(): HasMany
+    {
+        return $this->hasMany(VoucherItem::class);
     }
 }
