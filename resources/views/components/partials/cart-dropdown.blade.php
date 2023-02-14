@@ -68,6 +68,8 @@
     <a
         type="button"
         class="btn btn-icon btn-pills btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#loginPopup"
     >
 
         <i data-feather="shopping-cart" class="icons"></i>
