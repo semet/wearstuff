@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Enums\PaymentStatusEnum;
+use App\Events\OrderPlaced;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Courier;
 use App\Models\Order;
 use App\Services\CartService;
+use App\Services\JelapExpressService;
 use App\Services\Midtrans\CreateSnapTokenService;
 use Exception;
 use Illuminate\Http\Request;
@@ -24,24 +26,26 @@ class CheckoutController extends Controller
     public function index()
     {
         $address = Address::where('user_id', auth()->id())->get();
-        $couriers = Courier::all();
-
         return view('pages.checkout.index', [
             'address' => $address,
-            'couriers' => $couriers
         ]);
     }
 
     public function chooseDeliveryService(Request $request)
     {
         $cityId = Address::find($request->address)->city_id;
-        $params = [
-            'origin' => config('app.city_origin'),
-            'destination' => $cityId,
-            'weight' => $this->cart->getWeight(),
-            'courier' => $request->courier
-        ];
-        $costDetails = Ongkir::find($params)->costDetails()->get();
+        if ($request->courier == 'jlp') {
+            $costDetails = (new JelapExpressService($cityId))->details();
+        } else {
+            $params = [
+                'origin' => config('app.city_origin'),
+                'destination' => $cityId,
+                'weight' => $this->cart->getWeight(),
+                'courier' => $request->courier
+            ];
+            $costDetails = Ongkir::find($params)->costDetails()->get();
+        }
+        // dd($costDetails);
         return view('pages.checkout.delivery', [
             'costDetails' => $costDetails,
             'selectedAddress' => $request->address
@@ -116,7 +120,16 @@ class CheckoutController extends Controller
 
     public function checkoutSuccess(Order $order)
     {
+        OrderPlaced::dispatch($order);
         return view('pages.checkout.invoice', [
+            'order' => $order
+        ]);
+    }
+
+    public function checkoutPending(Order $order)
+    {
+        OrderPlaced::dispatch($order);
+        return view('pages.checkout.pending', [
             'order' => $order
         ]);
     }
