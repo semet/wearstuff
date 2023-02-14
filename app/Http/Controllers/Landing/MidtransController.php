@@ -21,6 +21,7 @@ class MidtransController extends Controller
         $hashed = hash('SHA512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
         $order = Order::where('number', $request->order_id)->first();
         //check if order is Expire ?
+
         if ($order->payment_status == PaymentStatusEnum::EXPIRE->value) {
             OrderExpired::dispatch($order);
             //Check if order has been cancelled
@@ -29,16 +30,36 @@ class MidtransController extends Controller
         } elseif ($order->payment_status == PaymentStatusEnum::PENDING->value) {
             //check Signature Key
             if ($hashed == $request->signature_key) {
-                if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
-                    $order->payment_status = PaymentStatusEnum::PAID;
-                    $order->save();
-
-                    PaymentSuccessful::dispatch($order);
-                }
+                match ($request->transaction_status) {
+                    'capture', 'settlement' => $this->processPaidOrder($order),
+                    'expire' => $this->processExpiredOrder($order),
+                    'cancel', 'refund' => $this->processCancelledOrder($order)
+                };
             } else {
                 Log::error('Invalid signature key');
                 throw new Exception('Invalid signature key');
             }
         }
+    }
+
+    public function processPaidOrder(Order $order)
+    {
+        $order->payment_status = PaymentStatusEnum::PAID->value;
+        $order->save();
+        PaymentSuccessful::dispatch($order);
+    }
+
+    public function processExpiredOrder(Order $order)
+    {
+        OrderExpired::dispatch($order);
+        $order->payment_status = PaymentStatusEnum::EXPIRE->value;
+        $order->save();
+    }
+
+    public function processCancelledOrder(Order $order)
+    {
+        OrderCancelled::dispatch($order);
+        $order->payment_status = PaymentStatusEnum::CANCELED->value;
+        $order->save();
     }
 }
