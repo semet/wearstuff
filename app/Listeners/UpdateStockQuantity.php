@@ -31,8 +31,6 @@ class UpdateStockQuantity
     public function handle(PaymentSuccessful $event)
     {
         $event->order->items->each(function (OrderItem $item) use ($event) {
-            //reduce the stock amount based on ordered quantity
-            $item->product()->decrement('quantity', $item->quantity);
             //check if stock amount <= 5, if true, notify admin!
             if ($item->product->quantity <= 3) {
                 StockRunningLow::dispatch($item->product);
