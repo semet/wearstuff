@@ -21,18 +21,18 @@ class CategorySeeder extends Seeder
     {
         Category::factory()->createMany([
             [
-                'name' => 'Batik Tradisional',
-                'slug' => 'batik-tradisional',
+                'name' => 'Fashion Tradisional',
+                'slug' => 'fashion-traditional',
                 'thumbnail' => fake()->imageUrl(600, 300, true)
             ],
             [
-                'name' => 'Kebaya Sasak',
-                'slug' => 'kebaya-sasak',
+                'name' => 'Beauty',
+                'slug' => 'beauty',
                 'thumbnail' => fake()->imageUrl(600, 300, true)
             ],
             [
-                'name' => 'Songket Sasak',
-                'slug' => 'songket-sasak',
+                'name' => 'Food & Drink',
+                'slug' => 'food-and-drink',
                 'thumbnail' => fake()->imageUrl(600, 300, true)
             ]
         ])->each(function (Category $category) {
@@ -42,7 +42,7 @@ class CategorySeeder extends Seeder
                     'category_id' => $category->id,
                     'sku' => Str::of(Str::random(10))->upper(),
                     'name' => fake()->word() . ' ' . fake()->word(),
-                    'price' => rand(100000, 500000),
+                    'price' => rand(50000, 500000),
                     'overview' => fake()->paragraph(),
                     'description' => fake()->paragraph(4),
                     'additional_info' => fake()->paragraph(),
