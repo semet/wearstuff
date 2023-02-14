@@ -19,32 +19,26 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        try {
-            $request->validate([
-                'name' => 'required',
-                'phone' => 'required|unique:users,phone',
-                'email' => 'required|email|unique:users,email',
-                'gender' => 'required',
-                'password' => 'required|confirmed',
-                'terms_and_condition' => 'required'
-            ]);
+        $data = $request->validate([
+            'name' => 'required',
+            'phone' => 'required|unique:users,phone',
+            'email' => 'required|email|unique:users,email',
+            'gender' => 'required',
+            'password' => 'required|confirmed',
+            'terms_and_condition' => 'required'
+        ]);
 
-            $user = User::create([
-                'name' => $request->name,
-                'phone' => $request->phone,
-                'email' => $request->email,
-                'gender' => $request->gender,
-                'password' => bcrypt($request->password),
-            ]);
+        $user = User::create($data);
 
-            if ($user) {
-                UserCreated::dispatch($user);
-            }
-        } catch (Exception $e) {
-            info($e->getMessage());
-        }
+        UserCreated::dispatch($user);
+
+        return redirect()->route('register.success', $user);
     }
 
+    public function success(User $user)
+    {
+        return view('pages.auth.registration-success');
+    }
     public function verifyEmail($id)
     {
         $verification = EmailVerification::findOrFail($id);
