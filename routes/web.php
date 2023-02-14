@@ -41,6 +41,7 @@ Route::controller(PasswordResetController::class)->group(function () {
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'showForm')->name('register.show');
     Route::post('/register', 'register')->name('register.post');
+    Route::get('/register/{user}', 'success')->name('register.success');
     Route::get('/register/verify-email/{id}', 'verifyEmail')->name('register.verify.email');
 });
 
@@ -50,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('address.store');
     Route::controller(GeneralController::class)->group(function () {
         Route::get('/city-by-province', 'cityByProvince')->name('city.by.province');
+        Route::get('/courier-by-city', 'courierByCity')->name('courier.by.city');
     });
 
     Route::controller(AccountController::class)->group(function () {
@@ -71,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/checkout/insert', 'insertData')->name('checkout.insert.data');
         Route::get('/checkout/preview/{order}', 'preview')->name('checkout.preview');
         Route::get('/checkout/success/{order}', 'checkoutSuccess')->name('checkout.success');
+        Route::get('/checkout/pending/{order}', 'checkoutPending')->name('checkout.pending');
     });
 });
 
