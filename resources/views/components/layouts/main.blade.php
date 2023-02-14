@@ -4,9 +4,9 @@
 		<meta charset="utf-8" />
 		<title>{{ $title ?? str_replace('_', ' ', config('app.name')) }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
-		<meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
-		<meta name="author" content="Shreethemes" />
+		<meta name="description" content="Wearstuf, Number 1 Lombok Online store." />
+		<meta name="keywords" content="Wearstuf, Lombok, NTB, Online Store" />
+		<meta name="author" content="Hamdani" />
 		<meta name="email" content="hamdanilombok@gmail.com" />
 		<meta name="website" content="https://hamdani.vercel.app" />
 		<meta name="Version" content="v3.8.0" />
