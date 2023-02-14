@@ -52,9 +52,9 @@
                                     <label for="courier" class="form-label">Kurir</label>
                                     <select name="courier" id="courier" class="form-select" required>
                                         <option value="" selected>--Pilih Kurir--</option>
-                                        @foreach ($couriers as $courier)
+                                        {{-- @foreach ($couriers as $courier)
                                             <option value="{{ $courier->code }}">{{ $courier->title }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                     <div class="invalid-feedback">
                                         Silakan pilih Kurir
@@ -70,5 +70,9 @@
             </div><!--end row-->
         </div><!--end container-->
     </section>
+
+    @push('scripts')
+        <script src="{{ asset('assets/js/common/getCourier.js') }}"></script>
+    @endpush
 
 </x-layouts.main>
