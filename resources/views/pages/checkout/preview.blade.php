@@ -133,6 +133,7 @@
                         /* You may add your own js here, this is just example */
                         // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                         console.log(result)
+                        window.location.href = '{{ route('checkout.pending', $order) }}'
                     },
                     // Optional
                     onError: function(result) {
