@@ -31,6 +31,7 @@ class CartService
                 'quantity' => $quantity ?? 1
             ]);
         }
+        Product::find($productId)->decrement('quantity');
     }
     /**
      * Undocumented function
