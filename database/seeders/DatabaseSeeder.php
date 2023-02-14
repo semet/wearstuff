@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use Artisan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +20,11 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             ProductSoldSeeder::class,
-            ProductViewSeeder::class
+            ProductViewSeeder::class,
+            VoucherItemSeeder::class,
+            CourierSeeder::class
         ]);
+
+        Artisan::call('raja-ongkir:cache all');
     }
 }
