@@ -3,7 +3,7 @@ $(function () {
         var value = e.target.value;
         var courierEl = $("#courier");
         axios
-            .get(route("courier.by.city", { city_id: value }))
+            .get(route("courier.by.city", { address_id: value }))
             .then(function (res) {
                 courierEl.empty();
                 courierEl.append(
