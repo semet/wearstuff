@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\City;
 use App\Models\Courier;
 use Illuminate\Http\Request;
@@ -22,8 +23,8 @@ class GeneralController extends Controller
     public function courierByCity(Request $request)
     {
         $jelapArea = [238, 239, 240, 241, 276];
-
-        if (in_array(auth()->user()->shippingAddress->first()?->city_id, $jelapArea)) {
+        $address = Address::find($request->address_id);
+        if (in_array($address->city_id, $jelapArea)) {
             $couriers = Courier::all();
         } else {
             $couriers = Courier::all()->reject(function ($value, $key) {
