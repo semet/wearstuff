@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
+            if (Auth::guard($guard)->check() && !is_null(Auth::guard($guard)->user()->email_verified_at)) {
                 return redirect(RouteServiceProvider::HOME);
             }
         }

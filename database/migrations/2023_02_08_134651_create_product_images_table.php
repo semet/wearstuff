@@ -20,6 +20,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('url');
+            $table->string('_public_id')->nullable();
             $table->timestamps();
         });
     }

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('gender', array_column(GenderEnum::cases(), 'value'));
             $table->string('photo')->nullable();
+            $table->string('_public_id')->nullable();
             $table->integer('point')->default(0);
             $table->boolean('active')->default(0);
             $table->rememberToken();

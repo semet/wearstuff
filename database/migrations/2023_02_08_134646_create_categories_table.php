@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('thumbnail');
+            $table->string('_public_id')->nullable();
             $table->timestamps();
         });
     }
