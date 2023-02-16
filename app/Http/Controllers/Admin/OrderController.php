@@ -35,6 +35,13 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        # code...
+        return view('admin.order.show', [
+            'order' => $order
+        ]);
+    }
+
+    public function print(Order $order)
+    {
+        return view('admin.order.print', ['order' => $order]);
     }
 }
