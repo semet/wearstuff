@@ -32,12 +32,22 @@ class Order extends Model
         return $this->hasOne(DeliveryService::class);
     }
 
-    public function getTax()
+    public function getSumPrice()
     {
         $totalPrice =  $this->items->map(function ($item) {
             return $item->product->finalPrice() * $item->quantity;
         })->sum();
 
-        return ceil(10 / 100 * $totalPrice);
+        return $totalPrice;
+    }
+
+    public function getTax()
+    {
+        return ceil(10 / 100 * $this->getSumPrice());
+    }
+
+    public function getTotalPrice()
+    {
+        return $this->getSumPrice() + $this->getTax() + $this->deliveryService->cost;
     }
 }
