@@ -20,6 +20,7 @@ Route::middleware(['admin', 'verified'])->group(function () {
         Route::get('/order', 'index')->name('admin.order');
         Route::get('/order/lists', 'getOrders')->name('admin.order.lists');
         Route::get('/order/show/{order}', 'show')->name('admin.order.show');
+        Route::get('/order/print/{order}', 'print')->name('admin.order.print');
     });
     //Customer Routes
     Route::controller(CustomerController::class)->group(function () {
