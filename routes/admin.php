@@ -42,6 +42,7 @@ Route::middleware(['admin', 'verified'])->group(function () {
         Route::get('/product/lists', 'getProducts')->name('admin.product.lists');
         Route::get('/product/create', 'create')->name('admin.product.create');
         Route::post('/product', 'store')->name('admin.product.store');
-        Route::get('/product/upload-image', 'imagUpload')->name('admin.product.upload-image');
+        Route::get('/product/upload-image/{product}', 'imagUploadView')->name('admin.product.upload-image');
+        Route::post('/product/upload-image/{product}', 'storeImage')->name('admin.product.store-image');
     });
 });
