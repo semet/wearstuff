@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductCreateRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\CloudinaryService;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -67,13 +68,62 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductCreateRequest $request)
     {
-        dd($request->files);
         $product = new Product();
-        // $produ
-    }
+        $product->category_id  = $request->category_id;
+        $product->sku  = $request->sku;
+        $product->name  = $request->name;
+        $product->price  = $request->price;
+        $product->weight  = $request->weight;
+        $product->quantity  = $request->quantity;
+        $product->size  = $request->size;
+        $product->gender  = $request->gender;
+        $product->overview  = $request->overview;
+        $product->description  = $request->description;
+        $product->additional_info  = $request->additionalInfo;
+        $product->ingredients  = $request->ingredients;
+        $product->save();
 
+        return redirect()->route('admin.product.upload-image', $product);
+    }
+    /**
+     * image Upload view
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function imagUploadView(Product $product)
+    {
+        return view('admin.product.upload-image', [
+            'product' => $product
+        ]);
+    }
+    /**
+     * Store image to cloudinary
+     *
+     * @param Request $request
+     * @param Product $product
+     * @return void
+     */
+    public function storeImage(Request $request, Product $product)
+    {
+        $imageFile = $request->file('file');
+        $result = CloudinaryService::upload(
+            image: $imageFile->getRealPath(),
+            filename: $imageFile->getClientOriginalName(),
+            directory: 'products'
+        );
+        $create = $product->images()->create([
+            'url' => $result->getSecurePath(),
+            '_public_id' => $result->getPublicId()
+        ]);
+
+        if ($create) {
+            return response()->json([
+                'message' => 'Upload successful'
+            ]);
+        }
+    }
     /**
      * Display the specified resource.
      *
