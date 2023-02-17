@@ -6,4 +6,5 @@ enum GenderEnum: string
 {
     case MALE = 'Male';
     case FEMALE = 'Female';
+    case NEUTRAL = 'Neutral';
 }
