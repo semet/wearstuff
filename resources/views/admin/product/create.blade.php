@@ -18,7 +18,7 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="productCategory">Category <span class="text-danger">*</span></label>
-                                        <select class="custom-select @error('category_id') is-invalid @enderror" name="category" id="productCategory">
+                                        <select class="custom-select @error('category_id') is-invalid @enderror" name="category_id" id="productCategory">
                                             <option value="" selected>--Select ategory--</option>
                                             @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
