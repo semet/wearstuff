@@ -11,7 +11,7 @@ class ProductImage extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['product_id', 'url'];
+    protected $fillable = ['product_id', 'url', '_public_id'];
 
     protected $hidden = [];
 
